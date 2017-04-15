@@ -13,7 +13,7 @@ module.exports = {
             });
         } else {
             console.log('signin failed!');
-            ctx.render('signin-failed.html', {
+            ctx.render('index_seg.html', {
                 title: 'Sign In Failed'
             });
         }
