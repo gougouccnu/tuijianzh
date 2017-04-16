@@ -38,6 +38,12 @@ httpsReference.getDownloadURL().then(function(url) {
   // This can be inserted into an <img> tag
   // This can also be downloaded directly
   console.log(url);
+  fabric.Image.fromURL(url, function (oImg) {
+                  console.log(oImg)
+                  // lsw added
+                  oImg.set({ left: 0, top: 0 });
+                  canvas.add(oImg);
+                });
 }).catch(function(error) {
   // Handle any errors
   console.log('download from firebase error');

@@ -14,6 +14,8 @@
         console.log(snapshot.metadata);
         var url = snapshot.downloadURL;
         console.log('File available at', url);
+        // redirect to image edit page
+        window.location.href = '/signin';
         // [START_EXCLUDE]
         //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
         // [END_EXCLUDE]
