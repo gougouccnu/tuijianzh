@@ -15,19 +15,20 @@
                                     console.log(file.type);
                                     var fr = new FileReader();
                                     fr.onload = function () {
+                                        console.log('fr onload');
                                         var img = new Image();
                                         img.onload = function () {
                                               console.log('image loaded.');
-                                              fabric.Image.fromURL(img.src, function (oImg) {
-                                              console.log(oImg)
+                                              //fabric.Image.fromURL(img.src, function (oImg) {
+                                              //console.log(oImg)
                                               // lsw added
                                               //oImg.set({ left: 0, top: 0 });
                                               //canvas.add(oImg);
-                                            });
+                                            //});
                                         };
                                         img.src = fr.result;
                                     };
-                                    //fr.readAsDataURL(file);
+                                    fr.readAsDataURL(file);
                             };
                             function loadImage()
                             {
@@ -45,7 +46,8 @@
                     </script>
 
                     
-                        <input type='file'  id='fileElem' style="display:none" onchange="imgOnChange(this.files)">
+                        <input type='file'  id='fileElem' style="display:none">
+                        <!--input type='file'  id='fileElem' style="display:none" onchange="imgOnChange(this.files)"-->
                         <a href="#" id="fileSelect">Select some files</a>
                         
                         <!--div class="form-group">
@@ -117,4 +119,9 @@
         </div>
     </div>
 </div>
+<body>
+
+    <script src="/static/js/firebase.storage.js"></script>
+
+</body>
 {% endblock %}

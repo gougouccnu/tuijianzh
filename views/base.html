@@ -8,6 +8,22 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <script src="/static/js/bootstrap.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDRefAwZCVenhiq-jGqiyftJDAcz3d2QLs",
+        authDomain: "clipliving.firebaseapp.com",
+        databaseURL: "https://clipliving.firebaseio.com",
+        projectId: "clipliving",
+        storageBucket: "clipliving.appspot.com",
+        messagingSenderId: "173728921045"
+      };
+      firebase.initializeApp(config);
+    </script>
+
 </head>
 
 <body>
@@ -43,22 +59,6 @@
             <p>Code licensed <a target="_blank" href="https://github.com/michaelliao/learn-javascript/blob/master/LICENSE">Apache</a>.</p>
         </div>
     </footer>
-
-    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
-    
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDRefAwZCVenhiq-jGqiyftJDAcz3d2QLs",
-    authDomain: "clipliving.firebaseapp.com",
-    databaseURL: "https://clipliving.firebaseio.com",
-    projectId: "clipliving",
-    storageBucket: "clipliving.appspot.com",
-    messagingSenderId: "173728921045"
-  };
-  firebase.initializeApp(config);
-
-</script>
 </body>
 
 </html>
