@@ -1120,4 +1120,5 @@ cveditor.controller('CanvasControls', function($scope) {
   $scope.current_mode = null;
   addAccessors($scope);
   watchCanvas($scope);
+  //$scope.load_image();
 });
