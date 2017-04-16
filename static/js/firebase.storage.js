@@ -1,8 +1,8 @@
     var auth = firebase.auth();
     var storageRef = firebase.storage().ref();
     function handleFileSelect(evt) {
-      evt.stopPropagation();
-      evt.preventDefault();
+      //evt.stopPropagation();
+      //evt.preventDefault();
       var file = evt.target.files[0];
       var metadata = {
         'contentType': file.type

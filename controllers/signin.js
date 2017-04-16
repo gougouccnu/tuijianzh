@@ -1,7 +1,7 @@
 // sign in:
 
 module.exports = {
-    'POST /signin': async (ctx, next) => {
+    'GET /signin': async (ctx, next) => {
         var
             email = ctx.request.body.email || '',
             password = ctx.request.body.password || '';

@@ -29,6 +29,20 @@
     <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
 
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDRefAwZCVenhiq-jGqiyftJDAcz3d2QLs",
+        authDomain: "clipliving.firebaseapp.com",
+        databaseURL: "https://clipliving.firebaseio.com",
+        projectId: "clipliving",
+        storageBucket: "clipliving.appspot.com",
+        messagingSenderId: "173728921045"
+      };
+      firebase.initializeApp(config);
+    </script>
+
   </head>
   <body class="skin-blue  sidebar-collapse"><!--sidebar-mini-->
     <!-- Site wrapper -->
@@ -160,21 +174,6 @@
 <div id="yaxis"></div>
       </div><!-- /.content-wrapper -->
     </div><!-- ./wrapper -->
-
-
-<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDRefAwZCVenhiq-jGqiyftJDAcz3d2QLs",
-    authDomain: "clipliving.firebaseapp.com",
-    databaseURL: "https://clipliving.firebaseio.com",
-    projectId: "clipliving",
-    storageBucket: "clipliving.appspot.com",
-    messagingSenderId: "173728921045"
-  };
-  firebase.initializeApp(config);
-</script>
 
     <!-- jQuery 2.1.3 -->
     <script src="../static/static/plugins/jQuery/jQuery-2.1.3.min.js"></script> <!-- SlimScroll -->
