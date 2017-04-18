@@ -25,30 +25,47 @@ var canvas = new fabric.Canvas('canvas'),
     },
     network_editor,network_train_editor,network_test_editor;
 
-// Create a reference with an initial file path and name
-var storage = firebase.storage();
 
-// Create a reference from an HTTPS URL
-// Note that in the URL, characters are URL escaped!
-var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/v0/b/clipliving.appspot.com/o/images%2Fdog.jpg?alt=media&token=6c90bdd6-76a1-4b22-8da2-609226f4822b');
+queryEditImage = function() {
+    console.log('query edit image');
 
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      
+      snapshot.forEach(function(childSnapshot) {
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+        console.log(childKey + childData);
+        // childData.forEach(function(childSnapshot) {
+        //   console.log(childSnapshot.key + childSnapshot.val());
+        // });
+      });
 
-httpsReference.getDownloadURL().then(function(url) {
-  // Get the download URL for 'images/stars.jpg'
-  // This can be inserted into an <img> tag
-  // This can also be downloaded directly
-  console.log(url);
-  fabric.Image.fromURL(url, function (oImg) {
-                  console.log(oImg)
-                  // lsw added
-                  oImg.set({ left: 0, top: 0 });
-                  canvas.add(oImg);
-                });
-}).catch(function(error) {
-  // Handle any errors
-  console.log('download from firebase error');
-  console.log(error);
-});
+      var imageUrl = snapshot.val();
+      console.log('imageUrl: ' + imageUrl);
+      // Create a reference from an HTTPS URL
+      // Note that in the URL, characters are URL escaped!
+      var httpsReference = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/clipliving.appspot.com/o/images%2Fdog.jpg?alt=media&token=6c90bdd6-76a1-4b22-8da2-609226f4822b');
+
+      httpsReference.getDownloadURL().then(function(url) {
+        // Get the download URL for 'images/stars.jpg'
+        // This can be inserted into an <img> tag
+        // This can also be downloaded directly
+        console.log(url);
+        fabric.Image.fromURL(url, function (oImg) {
+                        console.log(oImg)
+                        // lsw added
+                        oImg.set({ left: 0, top: 0 });
+                        canvas.add(oImg);
+                      });
+      }).catch(function(error) {
+        // Handle any errors
+        console.log('download from firebase error');
+        console.log(error);
+      });
+
+    });
+}
 
 // 浏览器不支持require，在html中import
 //var firebase = require('firebase');
@@ -57,33 +74,36 @@ httpsReference.getDownloadURL().then(function(url) {
 initApp = function() {
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
+            console.log('user sigin in');
             // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            user.getToken().then(function(accessToken) {
-              document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                photoURL: photoURL,
-                uid: uid,
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
-            });
+            // var displayName = user.displayName;
+            // var email = user.email;
+            // var emailVerified = user.emailVerified;
+            // var photoURL = user.photoURL;
+            // var uid = user.uid;
+            // var providerData = user.providerData;
+            // user.getToken().then(function(accessToken) {
+            //   document.getElementById('sign-in-status').textContent = 'Signed in';
+            //   document.getElementById('sign-in').textContent = 'Sign out';
+            //   document.getElementById('account-details').textContent = JSON.stringify({
+            //     displayName: displayName,
+            //     email: email,
+            //     emailVerified: emailVerified,
+            //     photoURL: photoURL,
+            //     uid: uid,
+            //     accessToken: accessToken,
+            //     providerData: providerData
+            //   }, null, '  ');
+            // });
           } else {
             // User is signed out.
             console.log('user is signed out');
             document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('sign-in').textContent = 'Sign in';
             document.getElementById('account-details').textContent = 'null';
+            firebase.auth().signInAnonymously();
           }
+          queryEditImage();
         }, function(error) {
           console.log(error);
         });

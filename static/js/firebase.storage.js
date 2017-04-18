@@ -1,5 +1,34 @@
+function writeNewImageUrl(uid, imageUrl) {
+  console.log('append new record');
+  // A post entry.
+  var postData = {
+    image_url: imageUrl
+  };
+
+  // Get a key for a new Post.
+  var newPostKey = firebase.database().ref().child('users').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/urls/' + newPostKey] = postData;
+  updates['/users/' + uid + '/' + newPostKey] = postData;
+
+  return firebase.database().ref().update(updates);
+}
+
+function writeUserData(userId, imageUrl) {
+  console.log('userid is:' + userId);
+  firebase.database().ref('users/' + userId).set({
+    image_url : imageUrl
+  });
+}
+
+
+
     var auth = firebase.auth();
+    var userId;
     var storageRef = firebase.storage().ref();
+
     function handleFileSelect(evt) {
       //evt.stopPropagation();
       //evt.preventDefault();
@@ -14,8 +43,12 @@
         console.log(snapshot.metadata);
         var url = snapshot.downloadURL;
         console.log('File available at', url);
+        
+        //writeUserData(userId, url);
+        writeNewImageUrl(userId, url);
+
         // redirect to image edit page
-        window.location.href = '/signin';
+        //window.location.href = '/signin?index=';
         // [START_EXCLUDE]
         //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
         // [END_EXCLUDE]
@@ -38,5 +71,6 @@
           // Sign the user in anonymously since accessing Storage requires the user to be authorized.
           auth.signInAnonymously();
         }
+        userId = firebase.auth().currentUser.uid;
       });
     }

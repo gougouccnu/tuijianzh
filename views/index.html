@@ -7,44 +7,6 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Please sign in</h3>
                 </div-->
                 <div class="panel-body">
-                    <!--script type="text/javascript">
-                            function imgOnChange(files){
-                                    
-                                    console.log('add image to left canvas')
-                                    var file = files[0];
-                                    console.log(file.type);
-                                    var fr = new FileReader();
-                                    fr.onload = function () {
-                                        console.log('fr onload');
-                                        var img = new Image();
-                                        img.onload = function () {
-                                              console.log('image loaded.');
-                                              //fabric.Image.fromURL(img.src, function (oImg) {
-                                              //console.log(oImg)
-                                              // lsw added
-                                              //oImg.set({ left: 0, top: 0 });
-                                              //canvas.add(oImg);
-                                            //});
-                                        };
-                                        img.src = fr.result;
-                                    };
-                                    fr.readAsDataURL(file);
-                            };
-                            function loadImage()
-                            {
-                                console.log('################ load image')
-                                var fileSelect = document.getElementById("fileSelect"),
-                                fileElem = document.getElementById("fileElem");
-
-                                fileSelect.addEventListener("click", function (e) {
-                                if (fileElem) {
-                                    fileElem.click();
-                                }
-                                //e.preventDefault(); // prevent navigation to "#"
-                                }, false);      
-                            }    
-                    </script-->
-
                     
                         <input type='file'  id='fileElem' style="display:none">
                         <!--input type='file'  id='fileElem' style="display:none" onchange="imgOnChange(this.files)"-->
@@ -52,16 +14,6 @@
                             <a href="#" id="fileSelect">Select some files</a>
                         </div>
                         
-                        <!--div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email">
-                            <p class="help-block">Use email: admin@example.com</p>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                            <p class="help-block">Use password: 123456</p>
-                        </div-->
                         <button class="btn btn-primary" onclick="document.getElementById('fileElem').click();">Upload image</button>
                     
                 </div>
@@ -82,10 +34,10 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h1>Get more courses...</h1>
+            <h1>Remove background...</h1>
         </div>
     </div>
-    <div class="row">
+    <!--div class="row">
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -119,7 +71,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 </div>
 <body>
 
