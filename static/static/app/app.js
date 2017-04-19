@@ -30,22 +30,27 @@ queryEditImage = function() {
     console.log('query edit image');
 
     var userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+    firebase.database().ref('/users/' + userId).limitToLast(1).on('child_added', function(data) {
+      console.log('..' + data.key + data.val());
+    // });
+    // 无法取到新加入的图片地址
+    // firebase.database().ref('/users/' + userId).limitToFirst(1).once('value').then(function(snapshot) {
       
-      snapshot.forEach(function(childSnapshot) {
-        var childKey = childSnapshot.key;
-        var childData = childSnapshot.val();
-        console.log(childKey + childData);
-        // childData.forEach(function(childSnapshot) {
-        //   console.log(childSnapshot.key + childSnapshot.val());
-        // });
-      });
+    //   console.log(snapshot.key + snapshot.val());
+    //   // snapshot.forEach(function(childSnapshot) {
+      //   var childKey = childSnapshot.key;
+      //   var childData = childSnapshot.val();
+      //   //console.log(childSnapshot);
+      //   console.log(childKey + childData);
+      //   // childData.forEach(function(childSnapshot) {
+      //   //   console.log(childSnapshot.key + childSnapshot.val());
+      //   // });
+      // });
 
-      var imageUrl = snapshot.val();
-      console.log('imageUrl: ' + imageUrl);
       // Create a reference from an HTTPS URL
       // Note that in the URL, characters are URL escaped!
-      var httpsReference = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/clipliving.appspot.com/o/images%2Fdog.jpg?alt=media&token=6c90bdd6-76a1-4b22-8da2-609226f4822b');
+      var httpsReference = firebase.storage().refFromURL(data.val());
+      //var httpsReference = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/clipliving.appspot.com/o/images%2Fdog.jpg?alt=media&token=6c90bdd6-76a1-4b22-8da2-609226f4822b');
 
       httpsReference.getDownloadURL().then(function(url) {
         // Get the download URL for 'images/stars.jpg'

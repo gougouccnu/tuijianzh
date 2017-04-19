@@ -1,20 +1,30 @@
+// function writeNewImageUrl(uid, imageUrl) {
+//   console.log('append new record');
+//   // A post entry.
+//   var postData = {
+//     image_url: imageUrl
+//   };
+
+//   // Get a key for a new Post.
+//   var newPostKey = firebase.database().ref().child('users').push().key;
+
+//   // Write the new post's data simultaneously in the posts list and the user's post list.
+//   var updates = {};
+//   updates['/urls/' + newPostKey] = postData;
+//   updates['/users/' + uid + '/' + newPostKey] = postData;
+
+//   return firebase.database().ref().update(updates);
+// }
+
 function writeNewImageUrl(uid, imageUrl) {
   console.log('append new record');
-  // A post entry.
-  var postData = {
-    image_url: imageUrl
-  };
 
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('users').push().key;
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
-  updates['/urls/' + newPostKey] = postData;
-  updates['/users/' + uid + '/' + newPostKey] = postData;
-
-  return firebase.database().ref().update(updates);
+  firebase.database().ref('users/' + uid + '/' + newPostKey).set(imageUrl);
+  return newPostKey;
 }
+
 
 function writeUserData(userId, imageUrl) {
   console.log('userid is:' + userId);
@@ -45,10 +55,10 @@ function writeUserData(userId, imageUrl) {
         console.log('File available at', url);
         
         //writeUserData(userId, url);
-        writeNewImageUrl(userId, url);
+        var newPostKey = writeNewImageUrl(userId, url);
 
         // redirect to image edit page
-        //window.location.href = '/signin?index=';
+        //window.location.href = '/signin';
         // [START_EXCLUDE]
         //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
         // [END_EXCLUDE]
