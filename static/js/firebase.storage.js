@@ -22,7 +22,7 @@ function writeNewImageUrl(uid, imageUrl) {
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('users').push().key;
   firebase.database().ref('users/' + uid + '/' + newPostKey).set(imageUrl);
-  return newPostKey;
+  //return newPostKey;
 }
 
 
@@ -36,7 +36,7 @@ function writeUserData(userId, imageUrl) {
 
 
     var auth = firebase.auth();
-    var userId;
+    var userId, progressBar;
     var storageRef = firebase.storage().ref();
 
     function handleFileSelect(evt) {
@@ -48,30 +48,72 @@ function writeUserData(userId, imageUrl) {
       };
       // Push to child path.
       // [START oncomplete]
-      storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
-        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-        console.log(snapshot.metadata);
-        var url = snapshot.downloadURL;
-        console.log('File available at', url);
-        
-        //writeUserData(userId, url);
-        var newPostKey = writeNewImageUrl(userId, url);
+      var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        function(snapshot) {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          document.getElementById('progressBar').style.visibility = 'visible';
+          $('.progress-bar').css('width', progress +'%');
+          
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log('Upload is running');
+              break;
+          }
+        }, function(error) {
+        switch (error.code) {
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
 
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+
+          case 'storage/unknown':
+            // Unknown error occurred, inspect error.serverResponse
+            break;
+        }
+      }, function() {
+        // Upload completed successfully, now we can get the download URL
+        var downloadURL = uploadTask.snapshot.downloadURL;
+        writeNewImageUrl(userId, downloadURL);
+        document.getElementById('progressBar').style.visibility = 'hidden';
+        $('.progress-bar').css('width', '0%');
         // redirect to image edit page
-        //window.location.href = '/signin';
-        // [START_EXCLUDE]
-        //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
-        // [END_EXCLUDE]
-      }).catch(function(error) {
-        // [START onfailure]
-        console.error('Upload failed:', error);
-        // [END onfailure]
-      });
-      // [END oncomplete]
+        window.location.href = '/signin';
+      });    
     }
+    //   .then(function(snapshot) {
+    //     console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+    //     console.log(snapshot.metadata);
+    //     var url = snapshot.downloadURL;
+    //     console.log('File available at', url);
+        
+    //     //writeUserData(userId, url);
+    //     var newPostKey = writeNewImageUrl(userId, url);
+
+    //     // redirect to image edit page
+    //     //window.location.href = '/signin';
+    //     // [START_EXCLUDE]
+    //     //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
+    //     // [END_EXCLUDE]
+    //   }).catch(function(error) {
+    //     // [START onfailure]
+    //     console.error('Upload failed:', error);
+    //     // [END onfailure]
+    //   });
+    //   // [END oncomplete]
+    // }
     window.onload = function() {
       document.getElementById('fileElem').addEventListener('change', handleFileSelect, false);
-      //document.getElementById('file').disabled = true;
+      document.getElementById('progressBar').style.width = '50%';
       auth.onAuthStateChanged(function(user) {
         if (user) {
           console.log('Anonymous user signed-in.', user);
@@ -84,3 +126,8 @@ function writeUserData(userId, imageUrl) {
         userId = firebase.auth().currentUser.uid;
       });
     }
+
+    $(document).ready(function(){
+    console.log('document ready');
+    //$('.progress-bar').css('width', '50%');
+});
