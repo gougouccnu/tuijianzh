@@ -30,6 +30,7 @@ queryEditImage = function() {
     console.log('query edit image');
 
     var userId = firebase.auth().currentUser.uid;
+    console.log(userId);
     firebase.database().ref('/users/' + userId).limitToLast(1).on('child_added', function(data) {
       console.log('..' + data.key + data.val());
     // });
