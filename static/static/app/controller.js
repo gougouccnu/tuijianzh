@@ -781,11 +781,11 @@ $scope.renderClipShape2Src = function(){
     var data = imageData.data;
     var seg;
 
-    for (var i = 0; i < results.indexMap.length-1; ++i) {
+    for (var i = 1; i < results.indexMap.length-1; ++i) {
             //seg = results.segments[results.indexMap[i]];
             //data[4 * i + 3] = 0;
-            if (results.segments[results.indexMap[i]].background){  // Extremely naive pixel bondary
-                if (results.segments[results.indexMap[i+1]].foreground){
+            if (results.segments[results.indexMap[i-1]].background){  // Extremely naive pixel bondary
+                if (results.segments[results.indexMap[i]].foreground){
                     data[4 * i + 0] = 255;
                     data[4 * i + 1] = 0;
                     data[4 * i + 2] = 0;
@@ -814,6 +814,13 @@ $scope.renderClipShape2Src = function(){
                     data[4 * i + 3] = 0;
                 }
             }
+            if (results.segments[results.indexMap[i]].mixed){
+                console.log('mixed pix');
+            }
+            if (results.segments[results.indexMap[i]].unknown){
+                console.log('unknown pix');
+            }
+
     }
     //context.globalCompositeOperation="destination-over";
     //context.putImageData(imageData, 0, 0);
