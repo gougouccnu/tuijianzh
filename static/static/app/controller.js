@@ -483,22 +483,54 @@ $scope.renderSuperpixels = function(){
 
 $scope.renderMixed = function(){
     var results = state.results;
-    var context = output_canvas.getContext('2d');
-    var imageData = context.createImageData(output_canvas.width, output_canvas.height);
+    
+    var c = document.createElement('canvas');
+    c.setAttribute('id', '_temp_canvas');
+    c.width = canvas.width;
+    c.height = canvas.height;
+    var context = c.getContext('2d');
+
+    //var context = canvas.getContext('2d');
+    var imageData = context.createImageData(canvas.width, canvas.height);
+    var srcImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    var srcData = srcImageData.data;
     var data = imageData.data;
-    for (var i = 0; i < results.indexMap.length; ++i) {
-        if (results.segments[results.indexMap[i]].mixed)
-        {
-            data[4 * i + 0] = results.rgbData[4 * i + 0];
-            data[4 * i + 1] = results.rgbData[4 * i + 1];
-            data[4 * i + 2] = results.rgbData[4 * i + 2];
-            data[4 * i + 3] = 255;
-        }
-        else{
-            data[4 * i + 3] = 0;
-        }
+    var seg;
+
+    for (var i = 1; i < results.indexMap.length-1; ++i) {
+            if (results.segments[results.indexMap[i]].background){
+                
+                    data[4 * i + 0] = 0;
+                    data[4 * i + 1] = 255;
+                    data[4 * i + 2] = 0;
+                    data[4 * i + 3] = 255;
+                    //console.log('edge pix..');
+            }
+
+
+            
+
+            // if (results.segments[results.indexMap[i]].mixed){
+            //     console.log('mixed pix');
+            // }
+            // if (results.segments[results.indexMap[i]].unknown){
+            //     console.log('unknown pix');
+            // }
+
     }
+    //context.globalCompositeOperation="destination-over";
+    //context.putImageData(imageData, 0, 0);
+
     context.putImageData(imageData, 0, 0);
+    fabric.Image.fromURL(c.toDataURL(), function(img) {
+        //img.left = segment.min_x;
+        //img.top = segment.min_y;
+        canvas.add(img);
+        img.bringToFront();
+        c = null;
+        $('#_temp_canvas').remove();
+        canvas.renderAll();
+    });
 
 };
 
@@ -781,16 +813,16 @@ $scope.renderClipShape2Src = function(){
     var data = imageData.data;
     var seg;
 
-    for (var i = 1; i < results.indexMap.length-1; ++i) {
+    for (var i = 1; i < results.indexMap.length-2; ++i) {
             //seg = results.segments[results.indexMap[i]];
             //data[4 * i + 3] = 0;
-            if (results.segments[results.indexMap[i-1]].background){  // Extremely naive pixel bondary
-                if (results.segments[results.indexMap[i]].foreground){
+            if (results.segments[results.indexMap[i]].background){  // Extremely naive pixel bondary
+                if (results.segments[results.indexMap[i+1]].foreground){
                     data[4 * i + 0] = 255;
                     data[4 * i + 1] = 0;
                     data[4 * i + 2] = 0;
                     data[4 * i + 3] = 255;
-                    //console.log('edge pix..');
+                    console.log('left edge pix..');
                 }
                 else {
                     data[4 * i + 0] = srcData[4 * i + 0];
@@ -801,25 +833,60 @@ $scope.renderClipShape2Src = function(){
             }
             if (results.segments[results.indexMap[i]].foreground){
                 if (results.segments[results.indexMap[i+1]].background){
+                    console.log('l-f r-b');
                     data[4 * i + 0] = 255;
                     data[4 * i + 1] = 0;
                     data[4 * i + 2] = 0;
                     data[4 * i + 3] = 255;
                     //console.log('edge pix..');
-                }
+                } 
                 else {
-                    data[4 * i + 0] = srcData[4 * i + 0];
-                    data[4 * i + 1] = srcData[4 * i + 1];
-                    data[4 * i + 2] = srcData[4 * i + 2];
-                    data[4 * i + 3] = 0;
+                  console.log('l-f r: not b');
                 }
             }
-            if (results.segments[results.indexMap[i]].mixed){
-                console.log('mixed pix');
-            }
-            if (results.segments[results.indexMap[i]].unknown){
-                console.log('unknown pix');
-            }
+            // // up/down cross point 
+            // if (results.segments[results.indexMap[i]].foreground){
+            //   if (i >= c.width) {
+            //     if (results.segments[results.indexMap[i - c.width]].background){
+            //         data[4 * i + 0] = 255;
+            //         data[4 * i + 1] = 0;
+            //         data[4 * i + 2] = 0;
+            //         data[4 * i + 3] = 255;
+            //         //console.log('edge pix..');
+            //     }
+            //     else {
+            //         data[4 * i + 0] = srcData[4 * i + 0];
+            //         data[4 * i + 1] = srcData[4 * i + 1];
+            //         data[4 * i + 2] = srcData[4 * i + 2];
+            //         data[4 * i + 3] = 0;
+            //     }
+            //   }
+            //   if (i + c.width + 1 <= 409600) {
+            //     //console.log(results.indexMap[i] + ' ' + c.width + ' ' + c.height + ' ' + results.indexMap.length);
+            //     //console.log(results.segments.length);
+            //     if (results.segments[results.indexMap[i + c.width]].background){
+            //         data[4 * i + 0] = 255;
+            //         data[4 * i + 1] = 0;
+            //         data[4 * i + 2] = 0;
+            //         data[4 * i + 3] = 255;
+            //         //console.log('edge pix..');
+            //     }
+            //     else {
+            //         data[4 * i + 0] = srcData[4 * i + 0];
+            //         data[4 * i + 1] = srcData[4 * i + 1];
+            //         data[4 * i + 2] = srcData[4 * i + 2];
+            //         data[4 * i + 3] = 0;
+            //     }
+            //   }
+            // }
+
+            
+            // if (results.segments[results.indexMap[i]].mixed){
+            //     console.log('mixed pix');
+            // }
+            // if (results.segments[results.indexMap[i]].unknown){
+            //     console.log('unknown pix');
+            // }
 
     }
     //context.globalCompositeOperation="destination-over";
