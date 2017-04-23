@@ -675,6 +675,16 @@ $scope.renderResults = function(){
         $('#_temp_canvas').remove();
         output_canvas.renderAll();
     });
+
+    // remove last clip shape
+    canvas.forEachObject(function(obj, index){
+            if (obj.isType('image') && canvas.item(0) !== obj){
+                canvas.remove(obj);
+            }
+        });
+    canvas.renderAll();
+
+    $scope.renderClipShape2Src();
 };
 
 
@@ -878,6 +888,8 @@ $scope.renderClipShape2Src = function(){
     fabric.Image.fromURL(c.toDataURL(), function(img) {
         //img.left = segment.min_x;
         //img.top = segment.min_y;
+        // remove last clip shape
+        // add new clip shape
         canvas.add(img);
         img.bringToFront();
         c = null;
