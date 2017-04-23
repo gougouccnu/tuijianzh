@@ -892,9 +892,12 @@ $scope.renderClipShape2Src = function(){
 $scope.refreshData = function(){
     if (state.recompute){
         canvas.deactivateAll().renderAll();
-        canvas.forEachObject(function(obj){
+        canvas.forEachObject(function(obj, index){
             if (!obj.isType('image')){
                 obj.opacity = 0;
+            }
+            if (canvas.item(0) !== obj) {
+              obj.opacity = 0;
             }
         });
         canvas.renderAll();
