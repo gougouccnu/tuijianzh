@@ -822,63 +822,45 @@ $scope.renderClipShape2Src = function(){
                     data[4 * i + 1] = 0;
                     data[4 * i + 2] = 0;
                     data[4 * i + 3] = 255;
-                    console.log('left edge pix..');
-                }
-                else {
-                    data[4 * i + 0] = srcData[4 * i + 0];
-                    data[4 * i + 1] = srcData[4 * i + 1];
-                    data[4 * i + 2] = srcData[4 * i + 2];
-                    data[4 * i + 3] = 0;
+                    //console.log('left edge pix..');
                 }
             }
             if (results.segments[results.indexMap[i]].foreground){
                 if (results.segments[results.indexMap[i+1]].background){
-                    console.log('l-f r-b');
+                    //console.log('right edge pix..');
                     data[4 * i + 0] = 255;
                     data[4 * i + 1] = 0;
                     data[4 * i + 2] = 0;
                     data[4 * i + 3] = 255;
                     //console.log('edge pix..');
                 } 
-                else {
-                  console.log('l-f r: not b');
-                }
             }
-            // // up/down cross point 
-            // if (results.segments[results.indexMap[i]].foreground){
-            //   if (i >= c.width) {
-            //     if (results.segments[results.indexMap[i - c.width]].background){
-            //         data[4 * i + 0] = 255;
-            //         data[4 * i + 1] = 0;
-            //         data[4 * i + 2] = 0;
-            //         data[4 * i + 3] = 255;
-            //         //console.log('edge pix..');
-            //     }
-            //     else {
-            //         data[4 * i + 0] = srcData[4 * i + 0];
-            //         data[4 * i + 1] = srcData[4 * i + 1];
-            //         data[4 * i + 2] = srcData[4 * i + 2];
-            //         data[4 * i + 3] = 0;
-            //     }
-            //   }
-            //   if (i + c.width + 1 <= 409600) {
-            //     //console.log(results.indexMap[i] + ' ' + c.width + ' ' + c.height + ' ' + results.indexMap.length);
-            //     //console.log(results.segments.length);
-            //     if (results.segments[results.indexMap[i + c.width]].background){
-            //         data[4 * i + 0] = 255;
-            //         data[4 * i + 1] = 0;
-            //         data[4 * i + 2] = 0;
-            //         data[4 * i + 3] = 255;
-            //         //console.log('edge pix..');
-            //     }
-            //     else {
-            //         data[4 * i + 0] = srcData[4 * i + 0];
-            //         data[4 * i + 1] = srcData[4 * i + 1];
-            //         data[4 * i + 2] = srcData[4 * i + 2];
-            //         data[4 * i + 3] = 0;
-            //     }
-            //   }
-            // }
+
+            // up cross point 
+            if (results.segments[results.indexMap[i]].foreground){
+              if (i >= c.width) {
+                if (!results.segments[results.indexMap[i - c.width]].foreground){
+                    data[4 * i + 0] = 255;
+                    data[4 * i + 1] = 0;
+                    data[4 * i + 2] = 0;
+                    data[4 * i + 3] = 255;
+                    //console.log('up edge pix..');
+                }
+              }
+            }
+
+            // down cross point 
+            if (results.segments[results.indexMap[i]].foreground){
+              if (i + c.width + 1 <= 409600) {
+                if (!results.segments[results.indexMap[i + c.width]].foreground){
+                    data[4 * i + 0] = 255;
+                    data[4 * i + 1] = 0;
+                    data[4 * i + 2] = 0;
+                    data[4 * i + 3] = 255;
+                    //console.log('down edge pix..');
+                }
+              }
+            }
 
             
             // if (results.segments[results.indexMap[i]].mixed){
