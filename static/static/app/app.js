@@ -125,11 +125,14 @@ initialize_ui = function () {
     //     });
 
     //lsw added
-    canvas.setWidth(640);
+    canvas.setWidth(jqwindow.width() / 2);
     canvas.setHeight(640);
     console.log('get canvas size');
     console.log(canvas.getWidth());
     console.log(canvas.getHeight());
+
+    output_canvas.setWidth(jqwindow.width() / 2);
+
 
     var jsfeat_gui = new dat.GUI({ autoPlace: false });
     var pf_opt, slic_opt;
@@ -259,7 +262,7 @@ initialize_ui = function () {
   })();
 
 
-
+//???
 (function() {
   fabric.util.addListener(fabric.window, 'load', function() {
     var canvas = this.__canvas || this.canvas,
@@ -335,7 +338,7 @@ var tour = {
 $(document).ready(function(){
     initialize_ui();
     initApp();
-    $('#introModal').modal();
+    //$('#introModal').modal();
     //hopscotch.startTour(tour);
 });
 
