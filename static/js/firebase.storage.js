@@ -17,11 +17,12 @@
 // }
 
 function writeNewImageUrl(uid, imageUrl) {
-  console.log('append new record');
+  console.log('append new record:');
+
 
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('users').push().key;
-  firebase.database().ref('users/' + uid + '/' + newPostKey).set(imageUrl);
+  return firebase.database().ref('users/' + uid + '/' + newPostKey).set(imageUrl);
   //return newPostKey;
 }
 
@@ -86,11 +87,12 @@ function writeUserData(userId, imageUrl) {
       }, function() {
         // Upload completed successfully, now we can get the download URL
         var downloadURL = uploadTask.snapshot.downloadURL;
-        writeNewImageUrl(userId, downloadURL);
-        document.getElementById('progressBar').style.visibility = 'hidden';
-        $('.progress-bar').css('width', '0%');
-        // redirect to image edit page
-        window.location.href = '/signin';
+        writeNewImageUrl(userId, downloadURL).then(function() {
+          document.getElementById('progressBar').style.visibility = 'hidden';
+          $('.progress-bar').css('width', '0%');
+          // redirect to image edit page
+          window.location.href = '/signin';
+        });
       });    
     }
     //   .then(function(snapshot) {
