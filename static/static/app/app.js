@@ -158,32 +158,32 @@ initialize_ui = function () {
     canvas.backgroundColor = '#ffffff';
     $('#bg-color').val('#ffffff');
     canvas.renderAll();
-    yax.hide();
-    $('#imgfile').on("change",function(){
-        console.log('add image to left canvas')
-        file = this.files[0];
-        fr = new FileReader();
-        fr.onload = function () {
-            img = new Image();
-            img.onload = function () {
-                  console.log('image loaded.');
-                  fabric.Image.fromURL(img.src, function (oImg) {
-                  console.log(oImg)
-                  // lsw added
-                  oImg.set({ left: 0, top: 0 });
-                  canvas.add(oImg);
-                });
-            };
-            img.src = fr.result;
-        };
-        fr.readAsDataURL(file);
-    });
-      delta_left = $('#output_canvas').offset().left - $('#canvas').offset().left + jqwindow.scrollLeft();
-      delta_top = $('#output_canvas').offset().top - $('#canvas').offset().top + jqwindow.scrollTop();
-    jqwindow.scroll(function () {
-      delta_left = $('#output_canvas').offset().left - $('#canvas').offset().left + jqwindow.scrollLeft();
-      delta_top = $('#output_canvas').offset().top - $('#canvas').offset().top + jqwindow.scrollTop();
-    });
+    //yax.hide();
+    // $('#imgfile').on("change",function(){
+    //     console.log('add image to left canvas')
+    //     file = this.files[0];
+    //     fr = new FileReader();
+    //     fr.onload = function () {
+    //         img = new Image();
+    //         img.onload = function () {
+    //               console.log('image loaded.');
+    //               fabric.Image.fromURL(img.src, function (oImg) {
+    //               console.log(oImg)
+    //               // lsw added
+    //               oImg.set({ left: 0, top: 0 });
+    //               canvas.add(oImg);
+    //             });
+    //         };
+    //         img.src = fr.result;
+    //     };
+    //     fr.readAsDataURL(file);
+    // });
+    //   delta_left = $('#output_canvas').offset().left - $('#canvas').offset().left + jqwindow.scrollLeft();
+    //   delta_top = $('#output_canvas').offset().top - $('#canvas').offset().top + jqwindow.scrollTop();
+    // jqwindow.scroll(function () {
+    //   delta_left = $('#output_canvas').offset().left - $('#canvas').offset().left + jqwindow.scrollLeft();
+    //   delta_top = $('#output_canvas').offset().top - $('#canvas').offset().top + jqwindow.scrollTop();
+    // });
 //    fabric.Image.fromURL("/static/img/demo.jpg", function(oImg){canvas.add(oImg);},load_options = {crossOrigin:"Anonymous"});
 };
 

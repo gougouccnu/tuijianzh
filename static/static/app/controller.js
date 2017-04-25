@@ -293,11 +293,11 @@ mover_cursor = function(options) {yax.css({'top': options.e.y + delta_top,'left'
         $scope.status = "Drawing background, click segment to update results."
     }
     if(canvas.isDrawingMode){
-        yax.show();
+        //yax.show();
         canvas.on('mouse:move',mover_cursor);
     }
    else{
-        yax.hide();
+        //yax.hide();
         canvas.off('mouse:move',mover_cursor);
     }
     canvas.freeDrawingBrush.width = 5;
@@ -1121,8 +1121,9 @@ function watchCanvas($scope) {
   function segmentBtnClicked() {
       console.log('ran into segmentBtnClicked');
       state.recompute = true;
-      var btn = document.getElementById('segment');
-      btn.click();
+      //var btn = document.getElementById('segment');
+      //btn.click();
+      $scope.segment();
   }
 
   canvas
@@ -1150,7 +1151,7 @@ function watchCanvas($scope) {
     },
     'mouse:move': function(e) {
       //e.target.opacity = 0.5;
-      console.log('mouse moving..');
+      //console.log('mouse moving..');
     },
     'object:moving': function(e) {
       console.log('object moving..');
@@ -1182,7 +1183,7 @@ function watchCanvas($scope) {
 
 cveditor.controller('CanvasControls', function($scope) {
   $scope.convnet_mode = false;
-  $scope.yax = $('#yaxis');
+  //$scope.yax = $('#yaxis');
   $scope.canvas = canvas;
   $scope.output_canvas = output_canvas;
   $scope.getActiveStyle = getActiveStyle;
