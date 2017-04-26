@@ -19,7 +19,6 @@
 function writeNewImageUrl(uid, imageUrl) {
   console.log('append new record:');
 
-
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('users').push().key;
   return firebase.database().ref('users/' + uid + '/' + newPostKey).set(imageUrl);
@@ -87,11 +86,17 @@ function writeUserData(userId, imageUrl) {
       }, function() {
         // Upload completed successfully, now we can get the download URL
         var downloadURL = uploadTask.snapshot.downloadURL;
-        writeNewImageUrl(userId, downloadURL).then(function() {
+        console.log('append new record:');
+
+        // Get a key for a new Post.
+        var newPostKey = firebase.database().ref().child('users').push().key;
+        firebase.database().ref('users/' + uid + '/' + newPostKey).set(imageUrl).then(function() {
           document.getElementById('progressBar').style.visibility = 'hidden';
           $('.progress-bar').css('width', '0%');
           // redirect to image edit page
           window.location.href = '/signin';
+        }).catch(function(error) {
+            console.log('Synchronization failed');
         });
       });    
     }

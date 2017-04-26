@@ -1,134 +1,100 @@
-{% extends "base.html" %} {% block main %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <!--div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Please sign in</h3>
-                </div-->
-                <div class="panel-body">
-                    
-                        <input type='file'  id='fileElem' style="display:none">
-                        <!--input type='file'  id='fileElem' style="display:none" onchange="imgOnChange(this.files)"-->
-                        <div style="height: 0; width: 0; overflow: hidden;">
-                            <a href="#" id="fileSelect">Select some files</a>
-                        </div>
-                        
-                        <button class="btn btn-primary btn-lg btn-block" onclick="document.getElementById('fileElem').click();">Upload image</button>
-                    
-                </div>
-            </div>
-        </div>
-        <!--div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-hd-video"></span> Video training</h3>
-                </div>
-                <div class="panel-body">
-                    <video width="100%" controls="controls">
-                        <source src="https://github.com/michaelliao/learn-javascript/raw/master/video/vscode-nodejs.mp4">
-                    </video>
-                </div>
-            </div>
-        </div-->
-    </div>
-<div id="progressBar" class="progress center-block hidden">
-    <div class="progress-bar" role="progressbar" aria-valuenow="60"
-         aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-        <span class="sr-only">40% 完成</span>
-    </div>
-</div>
-    <!--div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">JavaScript</h3>
-                </div>
-                <div class="panel-body">
-                    <p>full-stack JavaScript course</p>
-                    <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">Read more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Python</h3>
-                </div>
-                <div class="panel-body">
-                    <p>the latest Python course</p>
-                    <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Read more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">git</h3>
-                </div>
-                <div class="panel-body">
-                    <p>A course about git version control</p>
-                    <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Read more</a></p>
-                </div>
-            </div>
-        </div>
-    </div-->
-</div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img alt="Bootstrap Thumbnail First" src="//dyl80ryjxr1ke.cloudfront.net/external_assets/examples/pillow_v4/preview_original.jpeg" />
-                        <div class="caption">
-                            <h3>
-                                Mark
-                            </h3>
-                            <p>
-                                Mark some  foreground green and some  background red. The algorithm takes care of the details.
-                            </p>
-                            <p>
-                                <a class="btn btn-primary" href="#">Tutorials</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img alt="Bootstrap Thumbnail Second" src="//dyl80ryjxr1ke.cloudfront.net/external_assets/examples/pillowwithoutshadow_v1/preview_result_checker.jpeg" />
-                        <div class="caption">
-                            <h3 class="c">
-                                Live Preview
-                            </h3>
-                            <p>
-                                Live feedback lets you focus on the challenging parts of the image 
-                            </p>
-                            <p>
-                                <a class="btn btn-primary" href="#">Tutorials</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img alt="Bootstrap Thumbnail Third" src="//dyl80ryjxr1ke.cloudfront.net/external_assets/examples/pillow_v4/preview_result.jpeg" />
-                        <div class="caption">
-                            <h3>
-                                Jazz It Up
-                            </h3>
-                            <p>
-                                Adjust the colors, add drop shadows, and crop the image to create a truly eye-popping result!
-                            </p>
-                            <p>
-                                <a class="btn btn-primary" href="#">Tutorials</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<body>
-    <script src="/static/js/firebase.storage.js"></script>
+    <title>Static Top Navbar Example for Bootstrap</title>
 
-</body>
-{% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar-static-top.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
+            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../static/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
