@@ -108,6 +108,10 @@
                             </div>
                         </div>
                     </div>
+                    <h3>Fruits List</h3> 
+                    {% for f in books %}
+                    <p>{{ f.id }}</p>
+                    {% endfor %}
                     <div class="row" style="padding-top: 10px">
                         <div id="items">
                         </div>
@@ -185,6 +189,7 @@
     function unhoverbar(id) {
         $("#rect" + id).attr('style', '');
     }
+
     function scrollTo(id) {
         console.log("#" + id);
         $('html, body').animate({
@@ -192,7 +197,8 @@
         }, 1000);
     }
 
-    var books = [], tags = [];
+    var books = [],
+        tags = [];
 
     appendItem = function(div, title, content, imgUrl, itemLink) {
         div.append('<div class="row top-pad" id="0132350882">\
