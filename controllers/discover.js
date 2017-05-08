@@ -8,6 +8,6 @@ module.exports = {
 
         var items = require("./items/item.json");
 
-        ctx.render('discover.html', {"books" : items[tag.tag]});
+        ctx.render(tag.tag + '.html', {"books" : items[tag.tag]});
     }
 };
