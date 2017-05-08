@@ -116,7 +116,9 @@
                         <div class="col-sm-9">
                             <h2><a class="book-title" href="http://www.dev-books.com/book/book?isbn=0321584104&name=Eloquent-Ruby"  >{{ book.name }}</a></h2>
                             <p>Russ Olsen</p>
-                            <p>{{ book.name }}</p>
+                            {% for review in book.reviews %}
+                            <p>{{ review.content }}</p>
+                            {% endfor %}
                             <p class="get-amazon pull-left"><a class="btn btn-warning" target="_blank" href={{ book.jdLink }}>More on Amazon.com</a></p>
                         </div>
                     </div>
