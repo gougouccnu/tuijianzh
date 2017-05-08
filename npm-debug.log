@@ -7,7 +7,7 @@
 6 silly lifecycle view-koa@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle view-koa@1.0.0~start: view-koa@1.0.0
 8 verbose lifecycle view-koa@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle view-koa@1.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/lishaowei/Downloads/tuijianZhihu/view-koa/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lishaowei/Downloads/ruff-sdk-mac-1.0.0/bin:/Users/lishaowei/Downloads/ruff-sdk-mac-1.0.0/bin:/Users/lishaowei/Library/Android/sdk/platform-tools:/Applications/calibre.app/Contents/console.app/Contents/MacOS
+9 verbose lifecycle view-koa@1.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/lishaowei/Downloads/tuijianZhihu/view-koa/node_modules/.bin:/usr/local/Cellar/python3/3.6.1/bin/python3:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lishaowei/Downloads/ruff-sdk-mac-1.0.0/bin:/Users/lishaowei/Downloads/ruff-sdk-mac-1.0.0/bin:/Users/lishaowei/Library/Android/sdk/platform-tools:/Applications/calibre.app/Contents/console.app/Contents/MacOS
 10 verbose lifecycle view-koa@1.0.0~start: CWD: /Users/lishaowei/Downloads/tuijianZhihu/view-koa
 11 silly lifecycle view-koa@1.0.0~start: Args: [ '-c', 'node --use_strict app.js' ]
 12 silly lifecycle view-koa@1.0.0~start: Returned: code: 1  signal: null
