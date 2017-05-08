@@ -108,9 +108,18 @@
                             </div>
                         </div>
                     </div>
-                    <h3>Fruits List</h3> 
-                    {% for f in books %}
-                    <p>{{ f.id }}</p>
+                    {% for book in books %}
+                    <div class="row top-pad" id={{ book.id }}>
+                        <div class="col-sm-3">
+                            <img src="/img/ol/jpeg/0321584104.jpeg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-9">
+                            <h2><a class="book-title" href="http://www.dev-books.com/book/book?isbn=0321584104&name=Eloquent-Ruby"  >Eloquent Ruby</a></h2>
+                            <p>Russ Olsen</p>
+                            <p>Presents information on writing Ruby code, covering such topics as control structures, strings, expressions, building methods, classes, and domain specific languages.</p>
+                            <p class="get-amazon pull-left"><a class="btn btn-warning" target="_blank" href="https://amazon.com/dp/0321584104/?tag=devbookscom20-20">More on Amazon.com</a></p>
+                        </div>
+                    </div>
                     {% endfor %}
                     <div class="row" style="padding-top: 10px">
                         <div id="items">
@@ -218,290 +227,27 @@
     $(document).ready(function() {
 
         books = [{
-            "id": "xiaojiadina001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br>1，绝对是烤箱！！排名第一。中国人显然太不会用烤箱了，就知道微波炉这种只能温饭的东西。烤箱这玩意儿简直是万能的，比炒菜锅好用多了，而且无油烟！烤牛排、烤羊肉、烤香蕉、烤菠萝、烤糕点。西餐的烹饪方式加上中国人天生的美食思维，足足让俺灭掉无数米其林大厨哇！尤其是烤三文鱼，买来的冷冻三文鱼鱼块直接丢进去，200摄氏度烤20分钟，拿出来淋上沙拉及鲜柠檬就能即刻体验北欧美食～～～。酒店里的三文鱼实在是太贵了，自己做，一人份的烤三文鱼就是麦当劳一个汉堡的价格<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
+            "id": "0201604434",
+            "name": "Compressed Image File Formats",
+            "authors": "John Miano",
+            "description": "Since not all graphic formats are of equal complexity, author John Miano does not simply choose a number of file formats and devote a chapter to each one. Instead, he offers additional coverage for the more complex image file formats like PNG (a new standard) and JPEG, while providing all information necessary to use the simpler file formats. While including the well-documented BMP, XBM, and GIF formats for completeness, along with some of their less-covered features, this book gives the most space to the more intricate PNG and JPEG, from basic concepts to creating and reading actual files. Among its highlights, this book covers: -- JPEG Huffman coding, including decoding sequential mode JPEG images and creating sequential JPEG files-- Optimizing the DCT-- Portable Network Graphics format (PNG), including decompressing PNG image data and creating PNG files-- Windows BMP, XBM, and GIF",
+            "rating": "4.0",
+            "ratingscount": "2",
+            "img": "\\/img\\/thumbnails\\/0201604434.png",
+            "pop": "10",
+            "review": "Among its highlights, this book covers: -- JPEG Huffman coding, including decoding sequential mode JPEG images and creating sequential JPEG files-- Optimizing the DCT-- Portable Network Graphics format (PNG), including decompressing PNG ...",
+            "link": "https:\\/\\/amazon.com\\/dp\\/0201604434\\/?tag=devbookscom20-20"
         }, {
-            "id": "xiaojiadina002",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br> 3，松下只卖两百元的吸尘器，每周吸一吸，相当好用。看很多人推荐机器人吸尘器，那玩意儿只能吸地板，犄角旮旯的灰尘完全用不上。而且，家里的地板吸起来并不费劲，所以大可不必买个机器人。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina003",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br> 4，松下只卖六百块的那款空气净化器。每一周用吸尘器吸一次过滤网，一层土……。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina004",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br> 6，玻璃刮。几块钱的小玩意儿，就能将家里的玻璃镜子擦得干干净净。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina005",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br> 7，宜家挤橙子器，十块钱，可以喝道绝对鲜嫩的橙汁，而且不需要开启榨汁机那么难以清洗的玩意儿。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina006",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br> 8，面包机。自己技术一般，用它烤来的面包不是很好吃，主要用于和面，然后蒸馒头。嘿嘿，超市里的面头一块钱一个，我算了算，自己动手蒸馒头，一个两毛钱都用不到吧。北方人居家必备品。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina007",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br> 9，网络机顶盒或者一条将电脑链接电视的视频线。视频线可以让电视变成电脑的第二屏幕，想要看什么节目，直接拖拽过去即可。机顶盒也很好用，歪在沙发上看电视比坐在电脑前要舒服多了。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina008",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br> 10，复印扫描传真打印一体机。居家必备，省了很多麻烦。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br> 11，欧乐B电动牙刷，耍得干干净净。如果你抽烟，可以沾一些狮王牙粉，只需用一次就能让牙齿洁白光鲜。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina002",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br> 12，洗衣液。果然比洗衣粉好用哇。<br>",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br>13，宜家的衣柜尼龙挂格与裤子挂钩。节省很多空间。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina002",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br>14，无印良品的床上用品。舒服到极致。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br>15，屏幕清洁剂。擦各种屏幕，外加眼镜，去电影院看3D电影的时候带着，省得看不清楚。用了一年的iPad擦完之后变全新机。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina002",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br>16，木质SPA浴桶。洗澡爽歪歪。电热水器洗淋浴很快就没水了，而且水压问题，不是热就是凉，温度很难调节。用了浴桶就无所谓了，而且，还可以煮半锅艾叶水掉进去，再淋上花瓣、红酒、牛奶、浴盐啥的，WOW，极品享受啊～～～<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br>17，尤伦斯卖的艺术收藏装饰品。几百上千万的张晓刚、岳敏君的油画肯定买不起啦，但798里的尤伦斯出品的艺术海报只要十几元一张，买回来去东四那边花费几十元装好画框，挂起来……，蜗居立即变成了品位超高的国际艺术大师的家……。去无数朋友家串门，发现他们家里的墙上全都空空如也，连旅行的照片都木有，最多放一张结婚照，真是土的掉渣。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina002",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br>18，小型的电壁炉，四五百块钱吧。上面的炉火纯粹是装饰效果，下面是出热风的。实际发热效果一般，但心理效果很好。让家立即变成了丛林里的小木屋，围着温暖的炉火，搭着一条羊毛毡子，喝着热茶……，看着窗外的飘雪……，幸福感破表～～～。如果再上一档次，可以在家装个更高级的燃气壁炉。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br>19，外国产的零食，如菲律宾的芒果干、丹麦的曲奇、德国的水果糖，日本的速溶味噌汤与各种冰棍儿、韩国的香蕉牛奶、各种国家进口牛奶果汁饮料。<br><br>进口食品质量上有保证（俺对国内的食物已经彻底没信心了），而且算一算帐，进口的食物比国产贵不了哪里去，而且有的甚至还要更便宜！！！<br><br>特别推荐美国产的可口可乐。那个味道，是我小时候，六七岁的时候喝的味道！！！<br><br>泰国的原产红牛比国内的也好喝，去过泰国的的人都知道，丫玻璃瓶装的红牛饮料折合人民币一块多一瓶，而且还是曼谷机场超市里卖的价格！！！！<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaojiadina021",
-            "name": "Clean Code",
-            "authors": "Robert C. Martin",
-            "description": "<br>21，格兰仕电压力锅（可以卸下盖子的）：我家是没有煤气的商住两用公寓，用电磁炉炖肉煲汤就太不划算了，这时候电压力锅就成了神器了。一定要买盖子可以歇下来的，否则清洗起来就死定了。俺的私房菜是是杏鲍菇两根、一堆鸡翅跟，两个土豆，外加乱七八糟的佐料，丢进去炖，半个小时就OK了。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "29",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "256",
-            "review": "Looks at the principles and clean code, includes case studies showcasing the practices of writing clean code, and contains a list of heuristics and &quot;smells&quot; accumulated from the process of writing clean code.",
-            "link": "https:\/\/amazon.com\/dp\/0132350882\/?tag=devbookscom20-20"
-        }, {
-            "id": "food001",
-            "name": "Design Patterns",
-            "authors": "Ralph Johnson, Erich Gamma, John Vlissides, Richard Helm",
-            "description": "<br>22，柠檬：作为北方人，我是在四五年前才发现这个神奇的水果呢。之前一直以为是类似橙子直接吃的水果，心想这玩意儿怎么那么酸……，原来是万能的佐料哇。柠檬的神器之处就是，它可以让无论何种菜各种各样的菜变得很高级，能去除菜的油腥味！！！！还可以泡水。鲜柠檬切碎，然后冻成冰块，一个柠檬可以跑几十升的水，比买乱七八糟的饮料划算多了。还可以做蜂蜜柠檬红茶，蜂蜜柠檬奶茶，柠檬可乐，柠檬咖啡……WOWOWO<br>",
-            "category": "food",
-            "ratingscount": "18",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41XzaDJ3eXL._AC_US160_.jpg",
-            "pop": "277",
-            "review": "With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.",
-            "link": "https:\/\/amazon.com\/dp\/0201633612\/?tag=devbookscom20-20"
-        }, {
-            "id": "xiaoqiwu001",
-            "name": "",
-            "authors": "",
-            "description": "23，贴纸与磁铁：朋友问要去旅游，带什么伴手礼？答，带一个冰箱贴即可。家冰箱是白色的，很小，上面已经贴满了各色的贴纸与磁铁。我的冰箱贴完全只是装饰喽，只要有贴纸就粘上而已，也没啥讲究。除了装饰之外，听说还有时钟、定时器、温度计、记事贴纸等带有功能性质的冰箱贴。旅行箱上也可以粘贴纸，我中意的Rimowa旅行箱还舍不得买，买了之后，也一定会贴满的。",
-            "category": "xiaoqiwu",
-            "ratingscount": "",
-            "img": "",
-            "pop": "",
-            "review": "",
-            "link": ""
-        }, {
-            "id": "xiaoqiwu002",
-            "name": "",
-            "authors": "",
-            "description": "，下图这个电话跟台灯都是新的，淘宝买来的，一百块钱左右吧，憋了好久才买回来，效果极佳，家中顿时耀眼了许多。朋友来做客，都要摸一摸把玩一下。顺便吐槽一下老电话，这电话丫机械铃声，只要一响，保准让人吓一大跳。这个电话我看雕刻时光有卖的，卖好几百呢，还是淘宝靠谱哇。",
-            "category": "xiaoqiwu",
-            "ratingscount": "",
-            "img": "",
-            "pop": "",
-            "review": "",
-            "link": ""
-        }, {
-            "id": "jiaju001",
-            "name": "",
-            "authors": "",
-            "description": "25，宜家IKEA的桌子腿儿：宜家最神奇的地方是，有单卖桌子腿儿的，这也就意味着，你可以任意在腿上面放任何的东西做桌面……，有的桌子腿儿还能升高变成吧台，你要是经常绘图的工程师，还能让桌子前高后低。我的桌面是一本硕大无比的“书”，算是家具DIY了，青瓷瓶子旁边也放了一本民国时期的牛津字典来装饰。下图是三年前搬进新家后第一个月的模样，如今东西已经太多，彻底面目全非，我也懒得收拾了，准备下周搬家。",
-            "category": "jiaju",
-            "ratingscount": "",
-            "img": "",
-            "pop": "",
-            "review": "",
-            "link": ""
-        }, {
-            "id": "jiajuyongping001",
-            "name": "",
-            "authors": "",
-            "description": "话说市场上精油皂种类也很多，真正手工冷法工艺的却不多，都是用化学皂基融化，然后加上色素与香精，还有五颜六色的花瓣弄出来的，所谓透明精油皂是也，那种东西千万别用，有木有毒不知道，但总觉得很低端。而真正冷法手工皂是用各种天然植物油与火碱皂化而成，还要有一个月的皂化晾晒过程，再加上纯天然的高级精油。譬如我们家自己生产的几十快钱一大块的精油香皂，完全灭掉同价位的所有品牌洗面奶，甚至PK什么碧欧泉兰蔻也不在话下，实际使用效果在300块钱洗面奶的水平。而且，精油皂可以用来洗全身，不光是洗脸，连沐浴乳都省了。",
-            "category": "jiajuyongping",
-            "ratingscount": "",
-            "img": "",
-            "pop": "",
-            "review": "",
-            "link": ""
-        }, {
-            "id": "food001",
-            "name": "WIFI监控摄像头",
-            "authors": "",
-            "description": "实在是太好用了，真没想到一百多块的东西居然这么高级。可以用手机在任何地方查看家中实时情况，如果有风吹草动，它还能录下来。我最近用它来找东西，简直神了。话说我总是随手乱扔，找不到东西了难免跑来跑去的找，有了摄像头就方便多了。",
-            "category": "food",
-            "ratingscount": "",
-            "img": "",
-            "pop": "",
-            "review": "",
-            "link": ""
-        }, {
-            "id": "food001",
-            "name": "游戏手柄",
-            "authors": "",
-            "description": "我个人不怎么玩游戏，从小就不喜欢。最近电脑坏掉了，就买了一台新的。我弟弟看到我的电脑配置后很震惊，觉得我不玩游戏，只为上网却买了一台跑分二十五万的主机实在是太败家，就送了一个XBOX游戏手柄，并下载了一个《巫师3》，然后我就被迷住了。我没想到一个游戏简直能做得跟美剧一样。之前一直以为电脑游戏就只是撸啊撸那种小人儿跑来跑去小型游戏呢，大型3D游戏必须买PS4或者XBOX",
-            "category": "food",
-            "ratingscount": "",
-            "img": "",
-            "pop": "100",
-            "review": "",
-            "link": ""
-        }, {
-            "id": "food001",
-            "name": "投影仪",
-            "authors": "",
-            "description": "<br>原本做产品展览时候买的，就用了一次，然后就变成看电影专用了。家中挂了一个120寸的屏幕，投射上去虽没有电影院IMAX那么震撼，但多少还是有电影院的感觉呢。买了一个破解版的APPLE TV，接到了投影仪上，还是蛮不错的。如果你喜欢电影，强烈推荐买一个投影仪，我最近的乐趣就是，买一堆零食，躺在罗汉床上，裹着羊毛毡子，看老片儿。VR其实也不错，只不过不好用，看一会儿就头晕目眩的，得头痛恶心好半天。<br>",
-            "category": "xiaojiadian",
-            "ratingscount": "",
-            "img": "",
-            "pop": "100",
-            "review": "",
-            "link": ""
+            "id": "0201604434",
+            "name": "Compressed Image File Formats",
+            "authors": "John Miano",
+            "description": "Since not all graphic formats are of equal complexity, author John Miano does not simply choose a number of file formats and devote a chapter to each one. Instead, he offers additional coverage for the more complex image file formats like PNG (a new standard) and JPEG, while providing all information necessary to use the simpler file formats. While including the well-documented BMP, XBM, and GIF formats for completeness, along with some of their less-covered features, this book gives the most space to the more intricate PNG and JPEG, from basic concepts to creating and reading actual files. Among its highlights, this book covers: -- JPEG Huffman coding, including decoding sequential mode JPEG images and creating sequential JPEG files-- Optimizing the DCT-- Portable Network Graphics format (PNG), including decompressing PNG image data and creating PNG files-- Windows BMP, XBM, and GIF",
+            "rating": "4.0",
+            "ratingscount": "2",
+            "img": "\\/img\\/thumbnails\\/0201604434.png",
+            "pop": "10",
+            "review": "Among its highlights, this book covers: -- JPEG Huffman coding, including decoding sequential mode JPEG images and creating sequential JPEG files-- Optimizing the DCT-- Portable Network Graphics format (PNG), including decompressing PNG ...",
+            "link": "https:\\/\\/amazon.com\\/dp\\/0201604434\\/?tag=devbookscom20-20"
         }];
 
         var div = $('#items');
