@@ -86,7 +86,10 @@
                     </div>
                     <div class="row" style="padding-top:10px;">
                         <div class="col-sm-12">
-                            <a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=健身训练">健身训练</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=artificial-intelligence">artificial-intelligence</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=assembly">assembly</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=c">c</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=c%23">c#</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=compiler-construction">compiler-construction</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=computer-science">computer-science</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=css">css</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=database-design">database-design</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=embedded">embedded</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=graphics">graphics</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=html">html</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=image-processing">image-processing</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=java">java</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=javascript">javascript</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=machine-learning">machine-learning</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=math">math</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=networking">networking</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=operating-system">operating-system</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=oracle">oracle</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=project-management">project-management</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=r">r</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=research">research</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=sql">sql</a><a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag=uml">uml</a> </div>
+                            {% for bigCategory in bigCategoryArray %}
+                            <a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag={{ bigCategory }}">{{ bigCategory }}</a> 
+                            {% endfor %}
+                        </div>
                     </div>
                     <div class="row" style="padding-top:10px;">
                         <div class="col-sm-12">
@@ -185,6 +188,7 @@
     function unhoverbar(id) {
         $("#rect" + id).attr('style', '');
     }
+
     function scrollTo(id) {
         console.log("#" + id);
         $('html, body').animate({
@@ -192,7 +196,8 @@
         }, 1000);
     }
 
-    var books = [], tags = [];
+    var books = [],
+        tags = [];
 
     appendItem = function(div, title, content, imgUrl, itemLink) {
         div.append('<div class="row top-pad" id="0132350882">\

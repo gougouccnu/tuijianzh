@@ -7,7 +7,10 @@ module.exports = {
         console.log(tag.tag)
 
         var items = require("./items/item.json");
+        var bigCategoryArray = Object.keys(items);
+        console.log(bigCategoryArray)
 
-        ctx.render('agile.html', {"books": items[tag.tag], "bookArrayString" : JSON.stringify(items[tag.tag], null, 4)});
+        ctx.render('agile.html', {"bigCategoryArray": bigCategoryArray, 
+            "books": items[tag.tag], "bookArrayString" : JSON.stringify(items[tag.tag], null, 4)});
     }
 };
