@@ -87,8 +87,7 @@
                     <div class="row" style="padding-top:10px;">
                         <div class="col-sm-12">
                             {% for bigCategory in bigCategoryArray %}
-                            <a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag={{ bigCategory }}">{{ bigCategory }}</a> 
-                            {% endfor %}    
+                            <a class="btn btn-default btn-sm" style="margin:5px;" href="/book/discover?tag={{ bigCategory }}">{{ bigCategory }}</a> {% endfor %}
                         </div>
                     </div>
                     <div class="row" style="padding-top:10px;">
@@ -111,24 +110,22 @@
                             </div>
                         </div>
                     </div>
-                    {% for book in books %}
-                    <div class="row top-pad" id={{ book.name }}>
-                        <div class="col-sm-3">
-                            <img src={{ book.picUrl }} class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            <h2><a class="book-title" href="http://www.dev-books.com/book/book?isbn=0321584104&name=Eloquent-Ruby"  >{{ book.name }}</a></h2>
-                            <p>Russ Olsen</p>
-                            {% for review in book.reviews %}
-                            <p>{{ review.content }}</p>
-                            {% endfor %}
-                            <p class="get-amazon pull-left"><a class="btn btn-warning" target="_blank" href={{ book.jdLink }}>More on Amazon.com</a></p>
-                        </div>
-                    </div>
-                    {% endfor %}
                     <div class="row" style="padding-top: 10px">
-                        <div id="items">
+                        {% for book in books %}
+                        <div class="row top-pad" id={{ book.name }}>
+                            <div class="col-sm-3">
+                                <img src={{ book.picUrl }} class="img-responsive">
+                            </div>
+                            <div class="col-sm-9">
+                                <h2><a class="book-title" href="http://www.dev-books.com/book/book?isbn=0321584104&name=Eloquent-Ruby"  >{{ book.name }}</a></h2>
+                                <p>Russ Olsen</p>
+                                {% for review in book.reviews %}
+                                <p>{{ review.content }}</p>
+                                {% endfor %}
+                                <p class="get-amazon pull-left"><a class="btn btn-warning" target="_blank" href={{ book.jdLink }}>More on Amazon.com</a></p>
+                            </div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -216,7 +213,7 @@
 
     $(document).ready(function() {
         console.log('document ready');
-        books = {{ bookArrayString|safe }};
+        books = {{ bookArrayString | safe }};
         draw();
     });
     $(window).resize(function() {
